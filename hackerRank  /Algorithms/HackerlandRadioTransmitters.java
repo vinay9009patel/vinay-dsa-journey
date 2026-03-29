@@ -23,7 +23,42 @@ class Result {
 
     public static int hackerlandRadioTransmitters(List<Integer> x, int k) {
     // Write your code here
-
+    Collections.sort(x);
+                int i=0;
+                int n = x.size();
+                int transmitter = 0;
+                while(i<n){
+                    transmitter++;    // increase transmitter
+                     int  loc = x.get(i) +k ; //it is a location
+                     
+                while(i<n && x.get(i)<=loc){
+                    i++;
+                }
+                  
+                  loc = x.get(i-1)+k;
+                   while(i<n && x.get(i)<=loc){
+                    i++;
+                }
+                    
+                }      
+                 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+                return transmitter;
     }
 
 }
@@ -52,3 +87,4 @@ public class Solution {
         bufferedWriter.close();
     }
 }
+
