@@ -1,48 +1,45 @@
 import java.util.*;
+
 class MyStack {
-    Stack<Integer> stak;
-    Stack<Integer> temp;
+
+    Queue<Integer> q1;
+    Queue<Integer> q2;
 
     public MyStack() {
-        stak = new Stack<>();
-        temp = new Stack<>();
+        q1 = new LinkedList<>();
+        q2 = new LinkedList<>();
     }
-    
-    public void push(int x) {
-        System.out.println(x);
-        // if (stak.empty()) {
-        //     stak.push(x);
-        //     return;
-        // }
-        // while (!stak.empty()) {
-        //     temp.push(stak.pop());
-        // }
 
-        stak.push(x);
-        // while (!temp.empty()) {
-        //     stak.push(temp.pop());
-        // }
-        // System.out.println(stak);
-    }
-    
-    public int pop() {
-        if (stak.empty()) {
-            return -1;
+    // PUSH
+    public void push(int x) {
+
+        q2.add(x);
+
+        while (!q1.isEmpty()) {
+            q2.add(q1.remove());
         }
 
-        return stak.pop();
+        // swap
+        Queue<Integer> temp = q1;
+        q1 = q2;
+        q2 = temp;
     }
-    
+
+    // POP
+    public int pop() {
+        return q1.remove();
+    }
+
+    // TOP
     public int top() {
-        System.out.println("peek: " + stak.peek());
-        return stak.peek();
+        return q1.peek();
     }
-    
+
+    // EMPTY
     public boolean empty() {
-        return stak.empty();
+        return q1.isEmpty();
     }
 }
-
 /**
  * Your MyStack object will be instantiated and called as such:
  * MyStack obj = new MyStack();
