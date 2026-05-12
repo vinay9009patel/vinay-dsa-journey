@@ -1,0 +1,39 @@
+class Solution {
+    public List<String> findAllConcatenatedWordsInADict(String[] words) {
+        List<String> ans = new ArrayList<>();
+        HashSet<String> set = new HashSet<>();
+        // process smaller words first
+        Arrays.sort(words,
+                (a, b) -> a.length() - b.length());
+        for (String word : words) {
+            if (isCanForm(word, set)) {
+                ans.add(word);
+            }
+            set.add(word);
+        }
+        return ans;
+    }
+  boolean isCanForm(String word,
+            HashSet<String> set) {
+        if (set.size() == 0)
+            return false;
+        int n = word.length();
+        boolean dp[] = new boolean[n + 1];
+        dp[0] = true;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                // left side valid
+                if (dp[j]) {
+                    String part = word.substring(j, i);
+                    // current piece exists
+                    if (set.contains(part)) {
+
+                        dp[i] = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return dp[n];
+    }
+}
